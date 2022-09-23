@@ -17,7 +17,6 @@ margin-top: 20px;
     font-size: 18px;
     border: 1px solid #ddd;
     padding: 0 10px;
-    max-width: 70%;
     border-radius: 5px;
     margin-top: 5px;
 
@@ -25,4 +24,34 @@ margin-top: 20px;
      border: 1px solid ${colors.color1};
     }
   }
+`;
+
+export const Picture = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 0 10px 0;
+
+
+  img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    color: white;
+    background-color: ${colors.color1};
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+
 `;

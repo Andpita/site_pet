@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import * as color from '../../config/colors';
 
 export const AlunoContainer = styled.div`
 margin-top: 20px;
@@ -18,6 +19,7 @@ margin-top: 20px;
     .nomes {
       min-width: 20%;
     }
+
   }
 
   div + div {
@@ -35,5 +37,20 @@ export const ProfilePicture = styled.div`
 
 export const NovoAluno = styled(Link)`
   display: block;
-  padding: 20px 0 10px;
+  border: 2px solid ${color.color1};
+  border-radius: 6px;
+  max-width: 150px;
+  height: 40px;
+  margin: 15px 5px 5px;
+  padding: 5px 10px 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  background-color: lightblue;
+
+  svg {
+    font-size: 16px;
+    margin: 0 0 0 7px;
+  }
 `;

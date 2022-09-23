@@ -1,26 +1,29 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isEmail, isFloat, isInt } from 'validator';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import { Container } from '../../styles/GlobalStyle';
-import { Form } from './styled';
+import { Form, Picture } from './styled';
 import Loading from '../../components/Loading';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
+import { FaEdit, FaUserCircle } from 'react-icons/fa';
 
 export default function Aluno({ match }) {
   const id = get(match, 'params.id', '');
+
   const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [sobrenome, setSobrenome] = React.useState('');
   const [idade, setIdade] = React.useState('');
   const [peso, setPeso] = React.useState('');
   const [altura, setAltura] = React.useState('');
+  const [foto, setFoto] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
 
   const dispatch = useDispatch();
@@ -35,6 +38,8 @@ export default function Aluno({ match }) {
         setIsLoading(true);
         const { data } = await axios.get(`/alunos/${id}`);
         const Foto = get(data, 'Fotos[0].url', '');
+
+        setFoto(Foto);
 
         setNome(data.nome);
         setSobrenome(data.sobrenome);
@@ -106,6 +111,7 @@ export default function Aluno({ match }) {
           altura,
         });
         toast.success('Aluno(a) editado(a) com sucesso!');
+        history.push('/');
       } else {
         const { data } = await axios.post(`/alunos/`, {
           nome,
@@ -126,7 +132,11 @@ export default function Aluno({ match }) {
       const data = get(err, 'response.data', {});
       const errors = get(data, 'errors', []);
 
-      errors.map((error) => toast.error(error));
+      if (errors.length > 0) {
+        errors.map((error) => toast.error(error));
+      } else {
+        toast.error('Erro desconhecido');
+      }
 
       if (status === 401) dispatch(actions.loginFailure());
     }
@@ -136,6 +146,19 @@ export default function Aluno({ match }) {
     <Container>
       <Loading isLoading={isLoading} />
       <h1>{id ? 'Editar Aluno' : 'Criar Aluno'}</h1>
+
+      {id && (
+        <Picture>
+          {foto ? (
+            <img crossOrigin="" src={foto} alt={nome} />
+          ) : (
+            <FaUserCircle size={180} />
+          )}
+          <Link to={`/fotos/${id}`}>
+            <FaEdit size={20} />
+          </Link>
+        </Picture>
+      )}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="nome">

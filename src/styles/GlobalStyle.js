@@ -63,4 +63,9 @@ export const Container = styled.section`
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 `;

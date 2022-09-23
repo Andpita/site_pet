@@ -1,6 +1,6 @@
 {
   "name": "modelo-react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "homepage": "https://react.andpita.site/",
   "dependencies": {
@@ -33,7 +33,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.1",
+    "eslint-plugin-react": "^7.31.8",
     "prettier": "^2.7.1"
   },
   "browserslist": {

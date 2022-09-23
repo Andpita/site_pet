@@ -17,7 +17,6 @@ margin-top: 20px;
     font-size: 18px;
     border: 1px solid #ddd;
     padding: 0 10px;
-    max-width: 70%;
     border-radius: 5px;
     margin-top: 5px;
 

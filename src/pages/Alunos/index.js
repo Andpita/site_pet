@@ -6,6 +6,10 @@ import {
   FaEdit,
   FaWindowClose,
   FaExclamation,
+  FaUndo,
+  FaTrashAlt,
+  FaTrash,
+  FaPlus,
 } from 'react-icons/fa';
 
 import { Container } from '../../styles/GlobalStyle';
@@ -34,10 +38,28 @@ export default function Alunos() {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    // console.log(e.currentTarget); Link
-    const exclamation = e.currentTarget.nextSibling;
-    exclamation.setAttribute('display', 'block');
-    e.currentTarget.remove();
+    const targetLink = e.currentTarget.firstChild;
+
+    const undo = e.currentTarget.nextSibling;
+    const trash = undo.nextSibling;
+
+    undo.setAttribute('display', 'block');
+    trash.setAttribute('display', 'block');
+
+    targetLink.setAttribute('display', 'none');
+  };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    const cancel = e.target.previousSibling.firstChild;
+
+    cancel.setAttribute('display', 'block');
+    const target = e.target;
+
+    const trash = target.nextSibling;
+
+    trash.setAttribute('display', 'none');
+    target.setAttribute('display', 'none');
   };
 
   const handleConfirm = async (e, id, index) => {
@@ -76,7 +98,9 @@ export default function Alunos() {
 
       <h1>Alunos Page</h1>
 
-      <NovoAluno to="/aluno/">Novo Aluno</NovoAluno>
+      <NovoAluno to="/aluno/">
+        <FaPlus /> Novo Aluno
+      </NovoAluno>
 
       <AlunoContainer>
         {alunos.map((aluno, index) => (
@@ -92,20 +116,26 @@ export default function Alunos() {
             <span className="nomes">{aluno.nome}</span>
             <span className="emails">{aluno.email}</span>
 
-            {isLoggedIn && (
-              <Link to={`/aluno/${aluno.id}/edit`}>
-                <FaEdit />
-              </Link>
-            )}
+            <Link to={`/aluno/${aluno.id}/edit`}>
+              <FaEdit />
+            </Link>
 
             {isLoggedIn && (
-              <Link to={`/aluno/${aluno.id}/delete`} onClick={handleDelete}>
+              <Link
+                to={`/aluno/${aluno.id}/delete`}
+                onClick={handleDelete}
+                display="block"
+              >
                 <FaWindowClose />
               </Link>
             )}
 
             {isLoggedIn && (
-              <FaExclamation
+              <FaUndo onClick={handleCancel} display="none" cursor="pointer" />
+            )}
+
+            {isLoggedIn && (
+              <FaTrashAlt
                 onClick={(e) => handleConfirm(e, aluno.id, index)}
                 display="none"
                 cursor="pointer"
