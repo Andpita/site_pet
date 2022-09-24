@@ -43,7 +43,7 @@ export default function Users() {
     <Container>
       <Loading isLoading={isLoading} />
 
-      <h1>Alunos Page</h1>
+      <h1>Users Page</h1>
 
       <AlunoContainer>
         {users.map((user, index) => (

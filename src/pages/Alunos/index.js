@@ -96,7 +96,7 @@ export default function Alunos() {
     <Container>
       <Loading isLoading={isLoading} />
 
-      <h1>Alunos Page</h1>
+      <h1>Mascotes Page</h1>
 
       <NovoAluno to="/aluno/">
         <FaPlus /> Novo Aluno
