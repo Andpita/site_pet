@@ -41,25 +41,24 @@ function* registerRequest({ payload }) {
         nome,
         password: password || undefined,
       });
-      yield put(actions.registerSuccess({ nome, email, password }));
-      toast.success('Usuário alterado com sucesso');
+      toast.success('Conta alterada com sucesso!');
+      yield put(actions.registerUpdatedSuccess({ nome, email, password }));
     } else {
       yield call(axios.post, '/users', {
+        email,
         nome,
         password,
-        email,
       });
-
-      yield put(actions.registerSuccess({ nome, email, password }));
-      toast.success('Usuário criado com sucesso');
+      toast.success('Conta criada com sucesso!');
+      yield put(actions.registerCreatedSuccess({ nome, email, password }));
       history.push('/login');
     }
   } catch (e) {
-    const status = get(e, 'response.status', 0);
     const errors = get(e, 'response.data.errors', []);
+    const status = get(e, 'response.status', 0);
 
     if (status === 401) {
-      toast.warn('Você precisa fazer login novamente.');
+      toast.error('Você precisa fazer login novamente.');
       yield put(actions.loginFailure());
       return history.push('/login');
     }
@@ -67,10 +66,10 @@ function* registerRequest({ payload }) {
     if (errors.length > 0) {
       errors.map((error) => toast.error(error));
     } else {
-      toast.error('Erro desconhecido >:(');
+      toast.error('Erro desconhecido');
     }
 
-    yield put(actions.loginFailure());
+    yield put(actions.registerFailure());
   }
 }
 
