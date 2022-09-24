@@ -7,6 +7,7 @@ import {
   FaBug,
   FaCircle,
   FaPowerOff,
+  FaLock,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -45,6 +46,10 @@ export default function Header() {
 
       <Link to="/test">
         <FaBug size={28} />
+      </Link>
+
+      <Link to="/users">
+        <FaLock size={28} />
       </Link>
 
       {isLoggedIn ? (
