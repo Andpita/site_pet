@@ -54,4 +54,8 @@ export const Picture = styled.div`
     height: 30px;
   }
 
+  svg {
+    width: 220px;
+  }
+
 `;

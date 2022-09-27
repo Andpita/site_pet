@@ -20,6 +20,31 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loading from '../../components/Loading';
 import { toast } from 'react-toastify';
+import { BigHead } from '@bigheads/core';
+
+const Example = () => (
+  <BigHead
+    accessory="shades"
+    body="chest"
+    circleColor="blue"
+    clothing="tankTop"
+    clothingColor="black"
+    eyebrows="angry"
+    eyes="wink"
+    facialHair="mediumBeard"
+    graphic="vue"
+    hair="short"
+    hairColor="black"
+    hat="none"
+    hatColor="green"
+    lashes="false"
+    lipColor="purple"
+    mask="true"
+    faceMask="true"
+    mouth="open"
+    skinTone="brown"
+  />
+);
 
 export default function Alunos() {
   const [alunos, setAlunos] = React.useState([]);
@@ -104,12 +129,12 @@ export default function Alunos() {
 
       <AlunoContainer>
         {alunos.map((aluno, index) => (
-          <div key={String(aluno.id)}>
+          <ul key={String(aluno.id)}>
             <ProfilePicture>
               {get(aluno, 'Fotos[0].url', false) ? (
                 <img crossOrigin="" src={aluno.Fotos[0].url} alt="" />
               ) : (
-                <FaUserCircle size={40} />
+                <BigHead width={60} height={50} />
               )}
             </ProfilePicture>
 
@@ -141,7 +166,7 @@ export default function Alunos() {
                 cursor="pointer"
               />
             )}
-          </div>
+          </ul>
         ))}
       </AlunoContainer>
     </Container>

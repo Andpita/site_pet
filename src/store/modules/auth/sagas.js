@@ -42,7 +42,7 @@ function* registerRequest({ payload }) {
         password: password || undefined,
       });
       toast.success('Conta alterada com sucesso!');
-      yield put(actions.registerUpdatedSuccess({ nome, email, password }));
+      yield put(actions.registerSuccess({ nome, email, password }));
     } else {
       yield call(axios.post, '/users', {
         email,
@@ -50,7 +50,7 @@ function* registerRequest({ payload }) {
         password,
       });
       toast.success('Conta criada com sucesso!');
-      yield put(actions.registerCreatedSuccess({ nome, email, password }));
+      yield put(actions.registerSuccess({ nome, email, password }));
       history.push('/login');
     }
   } catch (e) {

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as color from '../../config/colors';
+import { BigHead } from '@bigheads/core';
 
 export const AlunoContainer = styled.div`
 margin-top: 20px;
 
-  div {
+  ul {
     display: flex;
     align-items: center;
     padding: 3px 0;
@@ -22,16 +23,17 @@ margin-top: 20px;
 
   }
 
-  div + div {
+  ul + ul {
     border-top: 2px solid gray;
   }
 `;
 
 export const ProfilePicture = styled.div`
   img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
+    margin: 0px 5px;
   }
 `;
 

@@ -13,6 +13,31 @@ import history from '../../services/history';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
 import { FaEdit, FaUserCircle } from 'react-icons/fa';
+import { BigHead } from '@bigheads/core';
+
+const Example = () => (
+  <BigHead
+    accessory="shades"
+    body="chest"
+    circleColor="blue"
+    clothing="tankTop"
+    clothingColor="black"
+    eyebrows="angry"
+    eyes="wink"
+    facialHair="mediumBeard"
+    graphic="vue"
+    hair="short"
+    hairColor="black"
+    hat="none"
+    hatColor="green"
+    lashes="false"
+    lipColor="purple"
+    mask="true"
+    faceMask="true"
+    mouth="open"
+    skinTone="brown"
+  />
+);
 
 export default function Aluno({ match }) {
   const id = get(match, 'params.id', '');
@@ -149,11 +174,7 @@ export default function Aluno({ match }) {
 
       {id && (
         <Picture>
-          {foto ? (
-            <img crossOrigin="" src={foto} alt={nome} />
-          ) : (
-            <FaUserCircle size={180} />
-          )}
+          {foto ? <img crossOrigin="" src={foto} alt={nome} /> : <BigHead />}
           <Link to={`/fotos/${id}`}>
             <FaEdit size={20} />
           </Link>
