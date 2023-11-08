@@ -131,6 +131,7 @@ export default function Alunos() {
         {alunos.map((aluno, index) => (
           <ul key={String(aluno.id)}>
             <ProfilePicture>
+              {console.log(aluno.Fotos[0])}
               {get(aluno, 'Fotos[0].url', false) ? (
                 <img crossOrigin="" src={aluno.Fotos[0].url} alt="" />
               ) : (
